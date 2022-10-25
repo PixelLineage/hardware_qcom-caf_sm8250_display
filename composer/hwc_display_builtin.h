@@ -74,6 +74,7 @@
 #include "utils/sync_task.h"
 #include "utils/constants.h"
 #include "cpuhint.h"
+#include "perf.h"
 #include "hwc_display.h"
 #include "hwc_layers.h"
 #include "display_null.h"
@@ -216,6 +217,9 @@ class HWCDisplayBuiltIn : public HWCDisplay, public SyncTask<LayerStitchTaskCode
   int GetBwCode(const DisplayConfigVariableInfo &attr);
   void SetBwLimitHint(bool enable);
   void SetPartialUpdate(DisplayConfigFixedInfo fixed_info);
+
+  void updateRefreshRateHint();
+
   uint32_t GetUpdatingAppLayersCount();
   void ValidateUiScaling();
 
@@ -229,6 +233,9 @@ class HWCDisplayBuiltIn : public HWCDisplay, public SyncTask<LayerStitchTaskCode
   const int kPerfHintLargeCompCycle = 0x00001097;
   BufferAllocator *buffer_allocator_ = nullptr;
   CPUHint *cpu_hint_ = nullptr;
+
+  Perf *perf_ = nullptr;
+
   CWBClient cwb_client_ = kCWBClientNone;
 
   // Builtin readback buffer configuration
