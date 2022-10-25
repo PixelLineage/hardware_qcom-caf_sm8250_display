@@ -40,6 +40,8 @@ ifeq ($(TARGET_USES_FOD_ZPOS), true)
 LOCAL_CFLAGS                  += -DFOD_ZPOS
 endif
 
+LOCAL_SHARED_LIBRARIES        += libbinder_ndk android.hardware.power-V1-ndk pixel-power-ext-V1-ndk
+
 LOCAL_SRC_FILES               := QtiComposer.cpp QtiComposerClient.cpp service.cpp \
                                  QtiComposerHandleImporter.cpp \
                                  hwc_session.cpp \
@@ -56,6 +58,8 @@ LOCAL_SRC_FILES               := QtiComposer.cpp QtiComposerClient.cpp service.c
                                  hwc_layers.cpp \
                                  hwc_callbacks.cpp \
                                  cpuhint.cpp \
+                                 worker.cpp \
+                                 perf.cpp \
                                  hwc_tonemapper.cpp \
                                  display_null.cpp \
                                  hwc_socket_handler.cpp \
